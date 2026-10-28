@@ -1,17 +1,20 @@
 import { NavLink } from 'react-router-dom'
+import { LayoutDashboard, Car, FileText, Activity, Truck } from 'lucide-react'
 
 const navItems = [
-  { to: '/dashboard', icon: '📊', label: 'Dashboard' },
-  { to: '/vehicles',  icon: '🚗', label: 'Vehicles' },
-  { to: '/documents', icon: '📄', label: 'Documents' },
-  { to: '/status',    icon: '💡', label: 'System Status' },
+  { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/vehicles',  icon: Car, label: 'Vehicles' },
+  { to: '/documents', icon: FileText, label: 'Documents' },
+  { to: '/status',    icon: Activity, label: 'System Status' },
 ]
 
 export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <div className="sidebar-logo-icon">🚙</div>
+        <div className="sidebar-logo-icon">
+          <Truck size={24} strokeWidth={2.5} />
+        </div>
         <div className="sidebar-logo-text">
           <span className="sidebar-logo-title">VehicleVault</span>
           <span className="sidebar-logo-sub">Document Manager</span>
@@ -20,7 +23,7 @@ export default function Sidebar() {
 
       <nav className="sidebar-nav">
         <span className="sidebar-section-label">Navigation</span>
-        {navItems.map(({ to, icon, label }) => (
+        {navItems.map(({ to, icon: Icon, label }) => (
           <NavLink
             key={to}
             to={to}
@@ -28,7 +31,9 @@ export default function Sidebar() {
               `sidebar-link${isActive ? ' active' : ''}`
             }
           >
-            <span className="sidebar-link-icon">{icon}</span>
+            <span className="sidebar-link-icon">
+              <Icon size={18} strokeWidth={2} />
+            </span>
             {label}
           </NavLink>
         ))}

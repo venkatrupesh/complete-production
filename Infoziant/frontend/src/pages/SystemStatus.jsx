@@ -154,10 +154,10 @@ export default function SystemStatus() {
               <p>⚠️ <strong>No authentication:</strong> This application is an unauthenticated MVP for learning purposes.
               Any user with network access can read, write, and delete all data.</p>
               <br />
-              <p>🔐 <strong>Before public deployment:</strong> Add user authentication (e.g., JWT + bcrypt),
+              <p><strong>🔒 Before public deployment:</strong> Add user authentication (e.g., JWT + bcrypt),
               authorization (role-based access), input sanitization, audit logs, and HTTPS.</p>
               <br />
-              <p>📁 <strong>Document access:</strong> Downloads are restricted to documents registered in the database.
+              <p><strong>📁 Document access:</strong> Downloads are restricted to documents registered in the database.
               The raw upload directory is not served as a public static directory.</p>
             </div>
           </div>

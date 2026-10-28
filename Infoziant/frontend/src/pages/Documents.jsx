@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import {
   getDocuments, getVehicles, uploadDocument, deleteDocument, getDownloadUrl
 } from '../services/api'
+import { FileText, Upload, Trash2, Plus, FolderOpen } from 'lucide-react'
 import Modal from '../components/Modal'
 import Alert from '../components/Alert'
 
@@ -190,7 +191,9 @@ export default function Documents() {
       ) : documents.length === 0 ? (
         <div className="card">
           <div className="empty-state">
-            <div className="empty-state-icon">📄</div>
+            <div className="empty-state-icon">
+              <FileText size={64} strokeWidth={1.5} />
+            </div>
             <h3>No documents found</h3>
             <p>Upload your first PDF document to start building your document vault.</p>
             {vehicles.length > 0 && (
@@ -241,7 +244,7 @@ export default function Documents() {
                         onClick={() => setConfirmDelete(d)}
                         id={`delete-doc-${d._id}`}
                       >
-                        🗑️ Delete
+                        <Trash2 size={14} /> Delete
                       </button>
                     </div>
                   </td>
@@ -281,7 +284,9 @@ export default function Documents() {
           onDrop={handleFileDrop}
           onClick={() => fileInputRef.current?.click()}
         >
-          <div className="upload-zone-icon">📁</div>
+          <div className="upload-zone-icon">
+            <FolderOpen size={40} strokeWidth={1.5} />
+          </div>
           <p><strong>Click to browse</strong> or drag &amp; drop a PDF here</p>
           <p style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: 4 }}>
             PDF only · Max 10 MB
@@ -298,7 +303,7 @@ export default function Documents() {
 
         {file && (
           <div className="file-preview">
-            <span>📄</span>
+            <FileText size={20} strokeWidth={2} />
             <span className="file-preview-name">{file.name}</span>
             <span className="file-preview-size">{formatBytes(file.size)}</span>
             <button
@@ -386,7 +391,9 @@ export default function Documents() {
         }
       >
         <div className="confirm-body">
-          <div className="confirm-icon">🗑️</div>
+          <div className="confirm-icon">
+            <Trash2 size={48} strokeWidth={1.5} />
+          </div>
           <p className="confirm-message">
             Permanently delete <strong>{confirmDelete?.title}</strong>?
             The PDF file and its metadata will be removed.

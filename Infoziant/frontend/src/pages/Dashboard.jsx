@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getDashboardStats } from '../services/api'
+import { Car, FileText, Clock, AlertCircle, Plus } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import Alert from '../components/Alert'
 
@@ -65,10 +66,10 @@ export default function Dashboard() {
 
       {/* Stats */}
       <div className="stats-grid">
-        <StatCard icon="🚗" value={stats.totalVehicles} label="Registered Vehicles" colorClass="blue" />
-        <StatCard icon="📄" value={stats.totalDocuments} label="Uploaded Documents" colorClass="purple" />
-        <StatCard icon="⏰" value={stats.expiringDocuments} label="Expiring in 30 Days" colorClass="warning" />
-        <StatCard icon="🔴" value={stats.expiredDocuments} label="Expired Documents" colorClass="danger" />
+        <StatCard icon={Car} value={stats.totalVehicles} label="Registered Vehicles" colorClass="blue" />
+        <StatCard icon={FileText} value={stats.totalDocuments} label="Uploaded Documents" colorClass="purple" />
+        <StatCard icon={Clock} value={stats.expiringDocuments} label="Expiring in 30 Days" colorClass="warning" />
+        <StatCard icon={AlertCircle} value={stats.expiredDocuments} label="Expired Documents" colorClass="danger" />
       </div>
 
       {/* Recent sections */}
@@ -78,18 +79,22 @@ export default function Dashboard() {
           <div className="card-title">Recently Added Vehicles</div>
           {recentVehicles.length === 0 ? (
             <div className="empty-state" style={{ padding: 'var(--spacing-8)' }}>
-              <div className="empty-state-icon">🚗</div>
+              <div className="empty-state-icon">
+                <Car size={64} strokeWidth={1.5} />
+              </div>
               <h3>No vehicles yet</h3>
               <p>Add your first vehicle to get started.</p>
               <button className="btn btn-primary btn-sm" onClick={() => navigate('/vehicles')}>
-                + Add Vehicle
+                <Plus size={16} /> Add Vehicle
               </button>
             </div>
           ) : (
             <div className="recent-list">
               {recentVehicles.map(v => (
                 <div key={v._id} className="recent-item">
-                  <div className="recent-item-icon vehicle">🚗</div>
+                  <div className="recent-item-icon vehicle">
+                    <Car size={20} strokeWidth={2} />
+                  </div>
                   <div className="recent-item-info">
                     <div className="recent-item-title">{v.registrationNumber}</div>
                     <div className="recent-item-sub">{v.make} {v.model} · {v.year}</div>
@@ -106,18 +111,22 @@ export default function Dashboard() {
           <div className="card-title">Recently Uploaded Documents</div>
           {recentDocuments.length === 0 ? (
             <div className="empty-state" style={{ padding: 'var(--spacing-8)' }}>
-              <div className="empty-state-icon">📄</div>
+              <div className="empty-state-icon">
+                <FileText size={64} strokeWidth={1.5} />
+              </div>
               <h3>No documents yet</h3>
               <p>Upload your first PDF document to get started.</p>
               <button className="btn btn-primary btn-sm" onClick={() => navigate('/documents')}>
-                + Upload Document
+                <Plus size={16} /> Upload Document
               </button>
             </div>
           ) : (
             <div className="recent-list">
               {recentDocuments.map(d => (
                 <div key={d._id} className="recent-item">
-                  <div className="recent-item-icon document">📄</div>
+                  <div className="recent-item-icon document">
+                    <FileText size={20} strokeWidth={2} />
+                  </div>
                   <div className="recent-item-info">
                     <div className="recent-item-title">{d.title}</div>
                     <div className="recent-item-sub">

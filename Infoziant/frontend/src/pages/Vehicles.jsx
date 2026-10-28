@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { getVehicles, createVehicle, updateVehicle, deleteVehicle } from '../services/api'
+import { Car, Plus, Edit2, Trash2 } from 'lucide-react'
 import Modal from '../components/Modal'
 import Alert from '../components/Alert'
 
@@ -134,10 +135,14 @@ export default function Vehicles() {
       ) : vehicles.length === 0 ? (
         <div className="card">
           <div className="empty-state">
-            <div className="empty-state-icon">🚗</div>
+            <div className="empty-state-icon">
+              <Car size={64} strokeWidth={1.5} />
+            </div>
             <h3>No vehicles registered</h3>
             <p>Add your first vehicle to start managing documents.</p>
-            <button className="btn btn-primary" onClick={openCreate}>+ Add First Vehicle</button>
+            <button className="btn btn-primary" onClick={openCreate}>
+              <Plus size={18} /> Add First Vehicle
+            </button>
           </div>
         </div>
       ) : (
@@ -170,14 +175,14 @@ export default function Vehicles() {
                         onClick={() => openEdit(v)}
                         id={`edit-vehicle-${v._id}`}
                       >
-                        ✏️ Edit
+                        <Edit2 size={14} /> Edit
                       </button>
                       <button
                         className="btn btn-danger btn-sm"
                         onClick={() => setConfirmDelete(v)}
                         id={`delete-vehicle-${v._id}`}
                       >
-                        🗑️ Delete
+                        <Trash2 size={14} /> Delete
                       </button>
                     </div>
                   </td>
@@ -296,7 +301,9 @@ export default function Vehicles() {
         }
       >
         <div className="confirm-body">
-          <div className="confirm-icon">🗑️</div>
+          <div className="confirm-icon">
+            <Trash2 size={48} strokeWidth={1.5} />
+          </div>
           <p className="confirm-message">
             Are you sure you want to delete <strong>{confirmDelete?.registrationNumber}</strong>?
             This will also permanently delete all associated documents and files.
