@@ -26,9 +26,12 @@ services:
   # Frontend — React + Nginx
   # ──────────────────────────────────────────────
   frontend:
+    # Option 1: Build locally (default)
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    # Option 2: Use Docker Hub image (uncomment to use)
+    # image: your-username/vehiclevault-frontend:latest
     container_name: vehiclevault-frontend
     restart: unless-stopped
     ports:
@@ -49,9 +52,12 @@ services:
   # Backend — Node.js + Express
   # ──────────────────────────────────────────────
   backend:
+    # Option 1: Build locally (default)
     build:
       context: ./backend
       dockerfile: Dockerfile
+    # Option 2: Use Docker Hub image (uncomment to use)
+    # image: your-username/vehiclevault-backend:latest
     container_name: vehiclevault-backend
     restart: unless-stopped
     # Backend is NOT exposed to the host — only reachable via Nginx proxy
